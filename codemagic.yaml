@@ -33,5 +33,3 @@ workflows:
 
     artifacts:
       - iosApp/build/ios/ipa/*.ipa
-
-        submit_to_app_store: false
