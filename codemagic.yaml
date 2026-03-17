@@ -13,7 +13,7 @@ workflows:
 
       vars:
         APP_STORE_APPLE_ID: 6760695904
-        XCODE_WORKSPACE: "iosApp.xcodeproj"
+        XCODE_PROJECT: "iosApp.xcodeproj"
         XCODE_SCHEME: "iosApp"
 
     scripts:
@@ -23,12 +23,15 @@ workflows:
           pod install
       - name: Set up code signing settings on Xcode project
         script: | 
-          xcode-project use-profiles
+          cd $CM_BUILD_DIR/iosApp
+          xcode-project use-profiles \
+          --project "$XCODE_PROJECT" \
+          --custom-export-options='{"testFlightInternalTestingOnly": true}'
       - name: Build ipa for distribution
         script: | 
           cd $CM_BUILD_DIR/iosApp
           xcode-project build-ipa \
-            --project "$XCODE_WORKSPACE" \
+            --project "$XCODE_PROJECT" \
             --scheme "$XCODE_SCHEME"
 
     artifacts:
