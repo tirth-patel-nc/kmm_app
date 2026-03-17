@@ -12,7 +12,7 @@ workflows:
         bundle_identifier: com.exam.myapplication
 
       vars:
-        APP_STORE_APPLE_ID: 6759789849
+        APP_STORE_APPLE_ID: 6760695904
         XCODE_WORKSPACE: "iosApp.xcodeproj"
         XCODE_SCHEME: "iosApp"
 
